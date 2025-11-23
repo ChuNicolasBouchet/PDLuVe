@@ -1,4 +1,4 @@
-# Low-Voltage Smart PDU — Open Hardware / Open Firmware
+# 🔌 Low-Voltage Smart PDU — Open Hardware / Open Firmware
 **Version MVP – 4 à 6 canaux – 5 V – 6 A par canal**
 
 Un PDU basse tension intelligent, modulaire, open source, conçu pour les clusters Raspberry Pi, serveurs SBC, dispositifs IoT et laboratoires personnels.
@@ -13,7 +13,7 @@ Le projet vise à proposer une alternative fiable et précise aux blocs de distr
 
 ---
 
-## Objectifs du MVP
+## 🎯 Objectifs du MVP
 
 ### ✔ 1. **Bus 5 V unique**
 - Alimentation via une Mean Well LRS-150-5 (ou équivalent)
@@ -48,3 +48,28 @@ Le projet vise à proposer une alternative fiable et précise aux blocs de distr
 ---
 
 ## 🧩 Architecture (schéma logique)
+
+Entrée 5V → Fusible global → Bus 5V
+|
++—––+––––––––––––––––––––––+
+|       |       |        |        |       |          |
+CH1     CH2     CH3      CH4      CH5    CH6       (bus)
+|        |       |        |       |       |
+[Filtre] [Filtre] …               …           [Filtre]
+|        |       |        |       |       |
+[Switch high-side 6A] (TPS4H160 ×2)
+|        |       |        |       |       |
+[Shunt]   [Shunt] …           …      [Shunt]
+|        |       |        |       |       |
+INA3221 #1 (CH1-3) + INA3221 #2 (CH4-6) + INA219 (bus)
+|
+I²C
+|
+ESP32-S3
+API / MQTT / Prometheus
+|
+OLED + Boutons
+
+--- 
+	•	CERN Open Hardware License v2
+	•	MIT pour le firmware
