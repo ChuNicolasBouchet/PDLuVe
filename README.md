@@ -1,5 +1,4 @@
 # Low-Voltage Smart PDU — Open Hardware / Open Firmware
-**Version MVP – 4 à 6 canaux – 5 V – 6 A par canal**
 
 Un PDU basse tension intelligent, modulaire, open source, conçu pour les clusters Raspberry Pi, serveurs SBC, dispositifs IoT et laboratoires personnels.
 
